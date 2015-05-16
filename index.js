@@ -1,7 +1,8 @@
 'use strict';
 var isWindows = process.platform === 'win32';
+var trailingSlashRe = isWindows ? /[^:]\\$/ : /.\/$/;
 
-// https://github.com/iojs/io.js/blob/b97b96d05a05429f5eccf1588f183a925fbececa/lib/os.js#L25-L40
+// https://github.com/nodejs/io.js/blob/3e7a14381497a3b73dda68d05b5130563cdab420/lib/os.js#L25-L43
 module.exports = function () {
 	var path;
 
@@ -16,7 +17,7 @@ module.exports = function () {
 			'/tmp';
 	}
 
-	if (/[\\\/]$/.test(path)) {
+	if (trailingSlashRe.test(path)) {
 		path = path.slice(0, -1);
 	}
 

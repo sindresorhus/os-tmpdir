@@ -5,7 +5,7 @@ var osTmpdir = require('./');
 var os = {tmpdir: osTmpdir};
 
 test(function (t) {
-	// https://github.com/iojs/io.js/blob/9ec3109272d3c82c7ba271f421a2a9ee98940dab/test/parallel/test-os.js#L6-L28
+	// https://github.com/nodejs/io.js/blob/3e7a14381497a3b73dda68d05b5130563cdab420/test/parallel/test-os.js#L6-L38
 	process.env.TMPDIR = '/tmpdir';
 	process.env.TMP = '/tmp';
 	process.env.TEMP = '/temp';
@@ -19,6 +19,12 @@ test(function (t) {
 		assert.equal(os.tmpdir(), expected);
 		process.env.TEMP = '\\temp\\';
 		assert.equal(os.tmpdir(), '\\temp');
+		process.env.TEMP = '\\tmpdir/';
+		assert.equal(os.tmpdir(), '\\tmpdir/');
+		process.env.TEMP = '\\';
+		assert.equal(os.tmpdir(), '\\');
+		process.env.TEMP = 'C:\\';
+		assert.equal(os.tmpdir(), 'C:\\');
 	} else {
 		assert.equal(os.tmpdir(), '/tmpdir');
 		process.env.TMPDIR = '';
@@ -29,6 +35,10 @@ test(function (t) {
 		assert.equal(os.tmpdir(), '/tmp');
 		process.env.TMPDIR = '/tmpdir/';
 		assert.equal(os.tmpdir(), '/tmpdir');
+		process.env.TMPDIR = '/tmpdir\\';
+		assert.equal(os.tmpdir(), '/tmpdir\\');
+		process.env.TMPDIR = '/';
+		assert.equal(os.tmpdir(), '/');
 	}
 
 	t.end();

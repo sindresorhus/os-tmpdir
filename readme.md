@@ -6,7 +6,7 @@
 
 Use this instead of `require('os').tmpdir()` to get a consistent behaviour on different Node.js versions (even 0.8).
 
-*This is actually taken from io.js as it contains a [fix](https://github.com/iojs/io.js/commit/b57cc51d8d3f4ad279591ae8fa6584ee22773b97) that haven't bubbled up to Node.js yet.*
+*This is actually taken from io.js 2.0.2 as it contains some fixes that haven't bubbled up to Node.js yet.*
 
 
 ## Install
