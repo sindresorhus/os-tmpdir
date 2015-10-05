@@ -19,10 +19,10 @@ $ npm install --save os-tmpdir
 ## Usage
 
 ```js
-var osTmpdir = require('os-tmpdir');
+const osTmpdir = require('os-tmpdir');
 
 osTmpdir();
-//=> /var/folders/m3/5574nnhn0yj488ccryqr7tc80000gn/T
+//=> '/var/folders/m3/5574nnhn0yj488ccryqr7tc80000gn/T'
 ```
 
 
