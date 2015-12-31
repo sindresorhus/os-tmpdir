@@ -1,45 +1,42 @@
-'use strict';
-var assert = require('assert');
-var test = require('ava');
-var osTmpdir = require('./');
-var os = {tmpdir: osTmpdir};
+import test from 'ava';
+import fn from './';
 
-test(function (t) {
+const os = {tmpdir: fn};
+
+test(t => {
 	// https://github.com/nodejs/io.js/blob/3e7a14381497a3b73dda68d05b5130563cdab420/test/parallel/test-os.js#L6-L38
 	process.env.TMPDIR = '/tmpdir';
 	process.env.TMP = '/tmp';
 	process.env.TEMP = '/temp';
 
 	if (process.platform === 'win32') {
-		assert.equal(os.tmpdir(), '/temp');
+		t.is(os.tmpdir(), '/temp');
 		process.env.TEMP = '';
-		assert.equal(os.tmpdir(), '/tmp');
+		t.is(os.tmpdir(), '/tmp');
 		process.env.TMP = '';
-		var expected = (process.env.SystemRoot || process.env.windir) + '\\temp';
-		assert.equal(os.tmpdir(), expected);
+		const expected = (process.env.SystemRoot || process.env.windir) + '\\temp';
+		t.is(os.tmpdir(), expected);
 		process.env.TEMP = '\\temp\\';
-		assert.equal(os.tmpdir(), '\\temp');
+		t.is(os.tmpdir(), '\\temp');
 		process.env.TEMP = '\\tmpdir/';
-		assert.equal(os.tmpdir(), '\\tmpdir/');
+		t.is(os.tmpdir(), '\\tmpdir/');
 		process.env.TEMP = '\\';
-		assert.equal(os.tmpdir(), '\\');
+		t.is(os.tmpdir(), '\\');
 		process.env.TEMP = 'C:\\';
-		assert.equal(os.tmpdir(), 'C:\\');
+		t.is(os.tmpdir(), 'C:\\');
 	} else {
-		assert.equal(os.tmpdir(), '/tmpdir');
+		t.is(os.tmpdir(), '/tmpdir');
 		process.env.TMPDIR = '';
-		assert.equal(os.tmpdir(), '/tmp');
+		t.is(os.tmpdir(), '/tmp');
 		process.env.TMP = '';
-		assert.equal(os.tmpdir(), '/temp');
+		t.is(os.tmpdir(), '/temp');
 		process.env.TEMP = '';
-		assert.equal(os.tmpdir(), '/tmp');
+		t.is(os.tmpdir(), '/tmp');
 		process.env.TMPDIR = '/tmpdir/';
-		assert.equal(os.tmpdir(), '/tmpdir');
+		t.is(os.tmpdir(), '/tmpdir');
 		process.env.TMPDIR = '/tmpdir\\';
-		assert.equal(os.tmpdir(), '/tmpdir\\');
+		t.is(os.tmpdir(), '/tmpdir\\');
 		process.env.TMPDIR = '/';
-		assert.equal(os.tmpdir(), '/');
+		t.is(os.tmpdir(), '/');
 	}
-
-	t.end();
 });
