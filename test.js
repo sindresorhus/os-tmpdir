@@ -1,10 +1,10 @@
 import test from 'ava';
-import fn from './';
+import m from './';
 
-const os = {tmpdir: fn};
+const os = {tmpdir: m};
 
 test(t => {
-	// https://github.com/nodejs/io.js/blob/3e7a14381497a3b73dda68d05b5130563cdab420/test/parallel/test-os.js#L6-L38
+	// https://github.com/nodejs/node/blob/3e7a14381497a3b73dda68d05b5130563cdab420/test/parallel/test-os.js#L6-L38
 	process.env.TMPDIR = '/tmpdir';
 	process.env.TMP = '/tmp';
 	process.env.TEMP = '/temp';
