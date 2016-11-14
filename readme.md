@@ -1,3 +1,7 @@
+**Deprecated:** This is not needed anymore. `require('os').tmpdir()` in Node.js 4 and up is good.
+
+---
+
 # os-tmpdir [![Build Status](https://travis-ci.org/sindresorhus/os-tmpdir.svg?branch=master)](https://travis-ci.org/sindresorhus/os-tmpdir)
 
 > Node.js [`os.tmpdir()`](https://nodejs.org/api/os.html#os_os_tmpdir) [ponyfill](https://ponyfill.com)
