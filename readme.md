@@ -12,7 +12,7 @@ Use this instead of `require('os').tmpdir()` to get a consistent behavior on dif
 ## Install
 
 ```
-$ npm install --save os-tmpdir
+$ npm install os-tmpdir
 ```
 
 
@@ -31,6 +31,14 @@ osTmpdir();
 See the [`os.tmpdir()` docs](https://nodejs.org/api/os.html#os_os_tmpdir).
 
 
-## License
+---
 
-MIT © [Sindre Sorhus](https://sindresorhus.com)
+<div align="center">
+	<b>
+		<a href="https://tidelift.com/subscription/pkg/npm-os-tmpdir?utm_source=npm-os-tmpdir&utm_medium=referral&utm_campaign=readme">Get professional support for this package with a Tidelift subscription</a>
+	</b>
+	<br>
+	<sub>
+		Tidelift helps make open source sustainable for maintainers while giving companies<br>assurances about security, maintenance, and licensing for their dependencies.
+	</sub>
+</div>
